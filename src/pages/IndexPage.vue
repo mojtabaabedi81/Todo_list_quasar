@@ -54,9 +54,9 @@ export default defineComponent({
       alert(this.message)
     }
   },
-  directives :{
-    autofocus : {
-      inserted(el){
+  directives: {
+    autofocus: {
+      inserted(el) {
         el.focus()
       }
     }
