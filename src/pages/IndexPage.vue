@@ -11,7 +11,7 @@
       @keyup.esc="clearMessage"
       @keyup.enter="alertMessage"
       v-autofocus
-    />
+    >
 
     <button @click="clearMessage">clear</button>
     <h5
