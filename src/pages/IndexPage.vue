@@ -1,8 +1,6 @@
 <template>
   <q-page padding>
-    <button style="position: absolute; right: 10px"
-            @click="counter++"
-    >
+    <button style="position: absolute; right: 10px" @click="counter++">
       {{ counter }}
     </button>
 
@@ -11,24 +9,25 @@
       @keyup.esc="clearMessage"
       @keyup.enter="alertMessage"
       v-autofocus
+      :class="{ 'bg-green': message.length <= 22, 'bg-red': message.length > 22 }"
+      ref="messageInput"
     >
 
     <button @click="clearMessage">clear</button>
-    <h5
-      v-if="message.length"
-      class="border-grey">{{ message }}</h5>
+    <div>{{ message.length }}</div>
+    <h5 v-if="message.length" class="border-grey">{{ message }}</h5>
     <h6 v-else>No message entered 😒</h6>
 
     <hr>
 
     <p>Uppercase Message: {{ messageUppercase }}</p>
-    <p>lowerCase message:{{ messageLowercase }} </p>
+    <p>lowerCase message: {{ messageLowercase }}</p>
 
   </q-page>
 </template>
 
 <script>
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   data() {
@@ -39,7 +38,6 @@ export default defineComponent({
   },
   computed: {
     messageUppercase() {
-      console.log('messageUppercase was fired')
       return this.message.toUpperCase() + this.counter
     },
     messageLowercase() {
@@ -67,5 +65,17 @@ export default defineComponent({
 <style>
 .border-grey {
   border: 3px solid grey;
+}
+
+input, button {
+  font-size: 23px;
+}
+
+.bg-green {
+  background-color: lightgreen;
+}
+
+.bg-red {
+  background-color: salmon;
 }
 </style>
