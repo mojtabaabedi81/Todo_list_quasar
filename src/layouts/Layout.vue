@@ -19,6 +19,18 @@
       </q-toolbar>
     </q-header>
 
+    <q-footer>
+      <q-tabs>
+        <q-tab
+          icon="list"
+          label="Todo"/>
+        <q-tab
+          icon="settings"
+          label="Settings"/>
+      </q-tabs
+       >
+    </q-footer>
+
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
@@ -28,23 +40,37 @@
         <q-item-label
           header
         >
-          Essential Links
+          Navigation
         </q-item-label>
 
         <q-item
+          to="/"
+          exact
           clickable
         >
           <q-item-section
             avatar
           >
-            <q-icon name="school" />
+            <q-icon name="list"/>
           </q-item-section>
 
           <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>
-              quasar.dev
-            </q-item-label>
+            <q-item-label>Todo</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item
+          to="/settings"
+          exact
+          clickable
+        >
+          <q-item-section
+            avatar
+          >
+            <q-icon name="settings"/>
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label>Settings</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
@@ -58,6 +84,7 @@
 
 <script>
 import {defineComponent, ref} from 'vue'
+
 export default defineComponent({
   name: 'MainLayout',
 
