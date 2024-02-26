@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <p>Todo Page</p>
+    <p>This is the Todo Page</p>
   </q-page>
 </template>
 
@@ -9,6 +9,7 @@
 export default {
 
 }
+
 </script>
 
 <style>
