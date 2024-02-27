@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh LpR fFf">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -11,28 +11,26 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title>
-          Quasar App
+        <q-toolbar-title class="absolute-center">
+          Todo list
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
     <q-footer>
       <q-tabs>
-        <q-tab
-          icon="list"
-          label="Todo"/>
-        <q-tab
-          icon="settings"
-          label="Settings"/>
-      </q-tabs
-       >
+        <q-route-tab
+          v-for="(nav) in navs"
+          :key="nav.label"
+          :to="nav.to"
+          :icon="nav.icon"
+          :label="nav.label"/>
+      </q-tabs>
     </q-footer>
 
     <q-drawer
       v-model="leftDrawerOpen"
+      :breakpoint="767"
       show-if-above
       bordered
     >
@@ -44,37 +42,26 @@
         </q-item-label>
 
         <q-item
-          to="/"
+          v-for="(nav) in navs"
+          :key="nav.label"
+          :icon="nav.icon"
+          :to="nav.to"
           exact
           clickable
         >
           <q-item-section
             avatar
           >
-            <q-icon name="list"/>
+            <q-icon :name="nav.icon"/>
           </q-item-section>
 
           <q-item-section>
-            <q-item-label>Todo</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item
-          to="/settings"
-          exact
-          clickable
-        >
-          <q-item-section
-            avatar
-          >
-            <q-icon name="settings"/>
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label>Settings</q-item-label>
+            <q-item-label>{{ nav.label }}</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
     </q-drawer>
+
 
     <q-page-container>
       <router-view/>
@@ -95,8 +82,33 @@ export default defineComponent({
       leftDrawerOpen,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value
-      }
+      },
+      navs: [
+        {
+          label: 'Todo',
+          icon: 'list',
+          to: '/'
+        },
+        {
+          label: 'Settings',
+          icon: 'settings',
+          to: '/settings'
+        },
+        {
+          label: 'About',
+          icon: 'info',
+          to: '/about',
+        }
+      ]
     }
   }
 })
 </script>
+
+<style>
+@media screen and (min-width: 768px) {
+  .q-footer {
+    display: none;
+  }
+}
+</style>
