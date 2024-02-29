@@ -2,15 +2,6 @@
   <q-layout view="hHh LpR fFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
         <q-toolbar-title class="absolute-center">
           Todo list
         </q-toolbar-title>
@@ -24,27 +15,27 @@
           :key="nav.label"
           :to="nav.to"
           :icon="nav.icon"
-          :label="nav.label"/>
+          :label="nav.label"
+          active-color="primary"
+        />
       </q-tabs>
     </q-footer>
 
     <q-drawer
       v-model="leftDrawerOpen"
       :breakpoint="767"
+      :width="250"
       show-if-above
       bordered
+
+
     >
       <q-list>
-        <q-item-label
-          header
-        >
-          Navigation
-        </q-item-label>
+        <q-item-label header>Navigation</q-item-label>
 
         <q-item
           v-for="(nav) in navs"
           :key="nav.label"
-          :icon="nav.icon"
           :to="nav.to"
           exact
           clickable
@@ -105,10 +96,17 @@ export default defineComponent({
 })
 </script>
 
-<style>
+<style lang="scss">
 @media screen and (min-width: 768px) {
   .q-footer {
     display: none;
   }
+}
+.q-tabs__content--dark .q-route-tab--active {
+  color: #000;
+}
+
+.q-drawer.q-router-link--exact-active {
+  color: #ca0303 !important;
 }
 </style>
