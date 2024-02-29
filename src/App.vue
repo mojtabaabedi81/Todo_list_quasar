@@ -9,3 +9,9 @@ export default defineComponent({
   name: 'App'
 })
 </script>
+
+<style>
+.text-strikethrough{
+  text-decoration-line: line-through;
+}
+</style>
