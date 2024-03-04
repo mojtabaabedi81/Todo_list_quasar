@@ -1,18 +1,17 @@
 <template>
   <q-item
-    @click="task.completed =!task.completed"
+    @click="toggleCompleted"
     :class="!task.completed ? 'bg-orange-1' : 'bg-green-1'"
     clickable
     v-ripple>
     <q-item-section side top>
       <q-checkbox v-model="task.completed"/>
     </q-item-section>
-
     <q-item-section>
       <q-item-label
         :class="{'text-strikethrough' : task.
             completed}"
-      >{{ task.name }} {{key}}
+      >{{ task.name }} {{id}}
       </q-item-label>
     </q-item-section>
     <q-item-section side>
@@ -43,7 +42,12 @@
 
 <script>
 export default {
-  props: ['task','id']
+  props: ['task', 'id'],
+  methods: {
+    toggleCompleted() {
+      this.$emit('toggle-completed', this.id);
+    }
+  }
 }
 </script>
 
